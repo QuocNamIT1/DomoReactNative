@@ -17,23 +17,40 @@ import {
   SectionList,
   Animated
 } from 'react-native';
+import Login from './component/login';
+import Home from './component/home';
 import Profile from './component/profile';
+import { StackNavigator } from 'react-navigation';
 
+const Navigation = StackNavigator({
+  Login: { screen: Login },
+  Home: { screen: Home },
+  Profile: { screen: Profile },
+},
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
+  });
 
-export default class App extends Component {
+// export default class App extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+//   constructor(props) {
+//     super(props);
+//   }
 
-  render() {
-    return (
-      <View>
-        <Profile />
-      </View>
-    );
-  }
-}
+//   render() {
+//     console.log(">>>> Debug");
+//     return (
+//       <View style={{ flex: 1 }}>
+//         <Login />
+//       </View>
+//     );
+//   }
+// }
 
-const styles = StyleSheet.create({
-});
+// const styles = StyleSheet.create({
+// });
+
+export default Navigation;
