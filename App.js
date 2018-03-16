@@ -17,10 +17,13 @@ import {
   SectionList,
   Animated
 } from 'react-native';
-import Login from './component/login';
-import Home from './component/home';
-import Profile from './component/profile';
+import Login from './js/component/login';
+import Home from './js/component/home';
+import Profile from './js/component/profile';
 import { StackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './js/reducers/index';
 
 const Navigation = StackNavigator({
   Login: { screen: Login },
@@ -34,23 +37,23 @@ const Navigation = StackNavigator({
     }
   });
 
-// export default class App extends Component {
+const store = createStore(rootReducer)
 
-//   constructor(props) {
-//     super(props);
-//   }
 
-//   render() {
-//     console.log(">>>> Debug");
-//     return (
-//       <View style={{ flex: 1 }}>
-//         <Login />
-//       </View>
-//     );
-//   }
-// }
+export default class App extends Component {
 
-// const styles = StyleSheet.create({
-// });
+  constructor(props) {
+    super(props);
+  }
 
-export default Navigation;
+  render() {
+    return (
+      <Provider store={store} >
+        <Navigation />
+      </Provider>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+});
