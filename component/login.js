@@ -6,6 +6,7 @@ import {
     ToastAndroid
 } from 'react-native';
 import { Container, Header, Content, Form, Text, Icon, Item, Input, Label, Button } from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class Login extends Component {
 
@@ -22,35 +23,38 @@ export default class Login extends Component {
         };
     }
 
-    login = () => {
+    navigateToHome = () => {
         var { navigate } = this.props.navigation;
-        if (this.state.username !== '' && this.state.password !== '') {
-            // ToastAndroid.show('Login Success', ToastAndroid.SHORT);
-            navigate('Home');
-        } else {
-            ToastAndroid.show('Login Failed', ToastAndroid.SHORT);
-        }
+        navigate('Home');
     }
 
     render() {
+        console.log(">>>>IsBusy >>> " + this,this.props.isBusy );
         return (
             <View style={{ padding: 30, flex: 1, backgroundColor: 'white' }}>
-                <View style={{ alignItems: 'center' }}>
-                    <Image style={{ borderRadius: 50, marginBottom: 30, width: 100, height: 100 }} source={{ uri: 'https://facebook.github.io/react/logo-og.png' }} />
+                <View>
+                    <View style={{ alignItems: 'center' }}>
+                        <Image style={{ borderRadius: 50, marginBottom: 30, width: 100, height: 100 }} source={{ uri: 'https://facebook.github.io/react/logo-og.png' }} />
+                    </View>
+                    <Form>
+                        <Item floatingLabel>
+                            <Label>Username</Label>
+                            <Input value={this.state.username} onChangeText={(value) => this.setState({ username: value })} />
+                        </Item>
+                        <Item floatingLabel>
+                            <Label>Password</Label>
+                            <Input value={this.state.password} onChangeText={(value) => this.setState({ password: value })} />
+                        </Item>
+                    </Form>
+                    <Button onPress={() => this.props.login(this.state.username, this.state.password, this.navigateToHome)} style={{ marginTop: 30, backgroundColor: '#05A5D1', borderRadius: 5 }} full>
+                        <Text>Login</Text>
+                    </Button>
                 </View>
-                <Form>
-                    <Item floatingLabel>
-                        <Label>Username</Label>
-                        <Input value={this.state.username} onChangeText={(value) => this.setState({ username: value })} />
-                    </Item>
-                    <Item floatingLabel>
-                        <Label>Password</Label>
-                        <Input value={this.state.password} onChangeText={(value) => this.setState({ password: value })} />
-                    </Item>
-                </Form>
-                <Button onPress={this.login.bind(this)} style={{ marginTop: 30, backgroundColor: '#05A5D1', borderRadius: 5 }} full>
-                    <Text>Login</Text>
-                </Button>
+                <Spinner
+                    visible={this.props.isBusy}
+                    textContent="Loading..."
+                    textStyle={{ color: '#000' }}
+                />
             </View>
         );
     }

@@ -1,11 +1,22 @@
-import { LOGIN } from './actions/actionTypes';
+import { LOGIN_SUCCESS, LOGIN_PENDING } from '../actions/actionTypes';
+import { combineReducers } from 'redux'
 
-const login = (state = {}, action) => {
+const initialState = {
+    isBusy: false
+}
+
+function login(state = { initialState }, action) {
     switch (action.type) {
-        case LOGIN:
-            return {
-                
-
-            }
+        case LOGIN_PENDING:
+            // if (action.username !== '' && action.password !== '') {
+            //     action.callback();
+            // }
+            return { isBusy: true };
+        case LOGIN_SUCCESS:
+            return { isBusy: false }
+        default:
+            return state;
     }
 }
+
+export default combineReducers({ login })

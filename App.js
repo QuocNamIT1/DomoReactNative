@@ -17,16 +17,17 @@ import {
   SectionList,
   Animated
 } from 'react-native';
-import Login from './js/component/login';
-import Home from './js/component/home';
-import Profile from './js/component/profile';
+import LoginContainer from './containers/loginContainer';
+import Home from './component/home';
+import Profile from './component/profile';
 import { StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import rootReducer from './js/reducers/index';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers/index';
 
 const Navigation = StackNavigator({
-  Login: { screen: Login },
+  Login: { screen: LoginContainer },
   Home: { screen: Home },
   Profile: { screen: Profile },
 },
@@ -37,7 +38,7 @@ const Navigation = StackNavigator({
     }
   });
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer,applyMiddleware(thunk));
 
 
 export default class App extends Component {
