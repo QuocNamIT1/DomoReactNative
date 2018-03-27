@@ -1,4 +1,4 @@
-import { LOGIN_PENDING, LOGIN_SUCCESS } from './actionTypes';
+import { LOGIN_PENDING, LOGIN_SUCCESS, LOAD_USERS_PENDING, LOAD_USERS_SUCCESS } from './actionTypes';
 
 export function login(username, password) {
     return {
@@ -14,6 +14,16 @@ export function loginAsync(username, password, callback) {
         setTimeout(() => {
             dispatch({ type: LOGIN_SUCCESS });
             callback();
-        }, 5000);
+        }, 2000);
     }
 }
+
+export function loadUserAsync() {
+    return dispatch => {
+        dispatch({ type: LOAD_USERS_PENDING });
+        setTimeout(() => {
+            dispatch({ type: LOAD_USERS_SUCCESS });
+        }, 2000);
+    }
+}
+

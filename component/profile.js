@@ -15,7 +15,7 @@ export default class Profile extends Component {
     }
 
     componentDidMount() {
-        console.log("state", this.props.navigation.state.params);
+        //console.log("state", this.props.navigation.state.params);
     }
 
     render() {

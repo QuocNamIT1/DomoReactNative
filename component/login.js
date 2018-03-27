@@ -23,13 +23,16 @@ export default class Login extends Component {
         };
     }
 
-    navigateToHome = () => {
+    navigateToMain = () => {
         var { navigate } = this.props.navigation;
-        navigate('Home');
+        navigate('Main');
+    }
+
+    login = (username, password) => () => {
+        this.props.login(this.state.username, this.state.password, this.navigateToMain);
     }
 
     render() {
-        console.log(">>>>IsBusy >>> " + this,this.props.isBusy );
         return (
             <View style={{ padding: 30, flex: 1, backgroundColor: 'white' }}>
                 <View>
@@ -46,7 +49,7 @@ export default class Login extends Component {
                             <Input value={this.state.password} onChangeText={(value) => this.setState({ password: value })} />
                         </Item>
                     </Form>
-                    <Button onPress={() => this.props.login(this.state.username, this.state.password, this.navigateToHome)} style={{ marginTop: 30, backgroundColor: '#05A5D1', borderRadius: 5 }} full>
+                    <Button onPress={this.login(this.state.username, this.state.password)} style={{ marginTop: 30, backgroundColor: '#05A5D1', borderRadius: 5 }} full>
                         <Text>Login</Text>
                     </Button>
                 </View>

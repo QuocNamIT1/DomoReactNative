@@ -17,29 +17,14 @@ import {
   SectionList,
   Animated
 } from 'react-native';
-import LoginContainer from './containers/loginContainer';
-import Home from './component/home';
 import Profile from './component/profile';
-import { StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
+import Router from './containers/router'
 
-const Navigation = StackNavigator({
-  Login: { screen: LoginContainer },
-  Home: { screen: Home },
-  Profile: { screen: Profile },
-},
-  {
-    headerMode: 'none',
-    navigationOptions: {
-      headerVisible: false,
-    }
-  });
-
-const store = createStore(rootReducer,applyMiddleware(thunk));
-
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default class App extends Component {
 
@@ -50,7 +35,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store} >
-        <Navigation />
+        <Router />
       </Provider>
     );
   }

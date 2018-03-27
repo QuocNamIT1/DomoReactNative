@@ -14,12 +14,6 @@ class HomeContainer extends Component {
     }
 }
 
-// const HomeContainer = (state, loadUsers) => (
-//     //     console.log(">>>>>loadUsers:" + JSON.stringify(state.users) + " >>>>>   " + state.isBusy);
-//     // return (
-//     <Home {...this.props} users={state.users} isBusy={state.isBusy} loadUsers={loadUsers} />
-// )
-
 const mapStateToProps = state => {
     return {
         state: state.home

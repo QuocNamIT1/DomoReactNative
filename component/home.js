@@ -6,32 +6,24 @@ import {
     ToastAndroid
 } from 'react-native';
 import { Container, Content, Header, List, ListItem, Thumbnail, Left, Right, Body, Button, Icon, Title, Text } from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class Home extends Component {
 
-    // static navigationOptions = {
-    //     title: 'Home',
-    // };
-
-    constructor(props) {
-        super(props);
+    componentDidMount() {
+        this.props.loadUsers();
     }
 
-    navigateToProfile = (profile) => {
+    navigateToProfile = (profile) => () => {
         var { navigate } = this.props.navigation;
         navigate('Profile', { name: profile });
     }
 
     render() {
-        var items = ['Simon Mignolet', 'Nathaniel Clyne', 'Dejan Lovren', 'Mama Sakho', 'Emre Can', 'Simon Mignolet', 'Nathaniel Clyne', 'Dejan Lovren', 'Mama Sakho', 'Emre Can'];
+        const { users } = this.props;
         return (
             <Container>
                 <Header style={{ backgroundColor: '#05A5D1' }}>
-                    {/* <Left>
-                        <Button  transparent>
-                            <Icon name='arrow-back' />
-                        </Button>
-                    </Left> */}
                     <Body style={{ margin: 20 }}>
                         <Title>Home</Title>
                     </Body>
@@ -42,15 +34,20 @@ export default class Home extends Component {
                     </Right>
                 </Header>
                 <Content>
-                    <List dataArray={items} renderRow={(item) =>
-                        <ListItem button onPress={this.navigateToProfile.bind(this,item)} >
+                    <List dataArray={users} renderRow={(user) =>
+                        <ListItem button onPress={this.navigateToProfile(user)} >
                             <Thumbnail square size={80} source={{ uri: 'https://facebook.github.io/react/logo-og.png' }} />
                             <Body>
-                                <Text>{item}</Text>
+                                <Text>{user}</Text>
                                 <Text note>Its time to build a difference . .</Text>
                             </Body>
                         </ListItem>
                     }></List>
+                    <Spinner
+                        visible={this.props.isBusy}
+                        textContent="Loading..."
+                        textStyle={{ color: '#000' }}
+                    />
                 </Content>
             </Container>
         );

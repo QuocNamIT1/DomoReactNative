@@ -1,10 +1,10 @@
 import { StackNavigator } from 'react-navigation';
 import LoginContainer from './loginContainer'
-import { TabBar } from './navigationConfig'
+import { MainTab } from './navigationConfig'
 
 const Router = StackNavigator({
     Login: { screen: LoginContainer },
-    TabBar: { screen: TabBar },
+    Main: { screen: MainTab },
 },
     {
         headerMode: 'none',
