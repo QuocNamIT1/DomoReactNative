@@ -13,7 +13,7 @@ export default class Store extends Component {
 
     navigateToTransaction = () => {
         var { navigate } = this.props.navigation;
-        navigate('Transaction');
+        navigate('Home');
     }
 
     render() {

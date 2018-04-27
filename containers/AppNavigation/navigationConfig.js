@@ -1,16 +1,17 @@
 import { StackNavigator } from 'react-navigation';
-import LoginContainer from './loginContainer'
-import { MainTab } from './navigationConfig'
+import LoginContainer from '../../containers/loginContainer'
+import TabNavigation from '../tabBar/tabNavigation'
 
 const Router = StackNavigator({
     Login: { screen: LoginContainer },
-    Main: { screen: MainTab },
+    Main: { screen: TabNavigation },
 },
     {
         headerMode: 'none',
         navigationOptions: {
             headerVisible: false,
         }
-    });
+    }
+);
 
 export default Router

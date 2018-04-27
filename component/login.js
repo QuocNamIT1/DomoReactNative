@@ -52,6 +52,10 @@ export default class Login extends Component {
                     <Button onPress={this.login(this.state.username, this.state.password)} style={{ marginTop: 30, backgroundColor: '#05A5D1', borderRadius: 5 }} full>
                         <Text>Login</Text>
                     </Button>
+                    <Button full style={{ marginTop: 30, backgroundColor: '#3c50e8', borderRadius: 5 }}
+                        onPress={() => console.log('dsa')}>
+                        <Text>Sign in with facebook</Text>
+                    </Button>
                 </View>
                 <Spinner
                     visible={this.props.isBusy}

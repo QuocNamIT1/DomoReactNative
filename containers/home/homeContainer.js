@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Home from '../component/home'
-import { loadUserAsync } from '../actions';
+import Home from '../../component/home'
+import { loadUserAsync } from '../../actions';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
