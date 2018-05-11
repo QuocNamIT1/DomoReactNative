@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View } from 'native-base';
-import { Animated } from 'react-native'
+import { View, Button, Container, Text } from 'native-base';
+import { Animated ,TouchableOpacity} from 'react-native'
 export class TestAnimation extends Component {
     state = {
         widthView: new Animated.Value(100),
@@ -19,17 +19,30 @@ export class TestAnimation extends Component {
 
     render() {
         let { fadeAnim, widthView } = this.state;
-
+        const {onNavigateToHomTab} =this.props;
         return (
-            <Animated.View
-                style={{
-                    ...this.props.style,
-                    width: widthView,
-                    // opacity: fadeAnim,         // Bind opacity to animated value
-                }}
-            >
-                {this.props.children}
-            </Animated.View>
+            <Container>
+                <Animated.View
+                    style={{
+                        ...this.props.style,
+                        width: widthView,
+                        // opacity: fadeAnim,         // Bind opacity to animated value
+                    }}
+                >
+                    {this.props.children}
+                </Animated.View>
+
+                 <TouchableOpacity
+                    onPress={onNavigateToHomTab}
+                    style={{
+                        padding:20,
+                        borderRadius:20,
+                        backgroundColor:'deeppink',
+                        marginTop:20
+                    }}>
+                    <Text>{'jump to tab one'}</Text>
+        </TouchableOpacity>
+            </Container>
         );
     }
 };

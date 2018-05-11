@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 class HomeContainer extends Component {
     render() {
         const { state, loadUsers } = this.props;
-        console.log(">>>>>loadUsers:" + JSON.stringify(state.users) + " >>>>>   " + state.isBusy);
         return (
             <Home {...this.props} users={state.users} isBusy={state.isBusy} loadUsers={loadUsers} />
         )

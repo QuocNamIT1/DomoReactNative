@@ -10,7 +10,7 @@ const listuser = ['Simon Mignolet', 'Nathaniel Clyne', 'Dejan Lovren',
 function home(state = initialState, action) {
     switch (action.type) {
         case LOAD_USERS_PENDING:
-            return { ...state, isBusy: true };
+            return { ...state, isBusy: false };
         case LOAD_USERS_SUCCESS:
             return {
                 ...state,

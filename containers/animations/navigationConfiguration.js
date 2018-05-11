@@ -1,8 +1,9 @@
 import { StackNavigator } from 'react-navigation';
 import AnimationContainer from './animationContainer';
+import PhotoGallery from '../../component/shareElement/PhotoGallery';
 
 const AnimationTab = StackNavigator({
-    Animation: { screen: AnimationContainer }
+    Animation: { screen: PhotoGallery }
 }, {
         headerMode: 'none',
         navigationOptions: {
