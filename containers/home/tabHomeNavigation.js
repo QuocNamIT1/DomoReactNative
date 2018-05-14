@@ -8,7 +8,7 @@ export class TabHomeNavigation extends Component {
     static navigationOptions = {
         title: "Home",
         tabBarIcon: () => (
-            <Icon style={styles.icon} name='map-marker-outline' />
+            <Icon style={styles.icon} name='home' />
         )
     }
 

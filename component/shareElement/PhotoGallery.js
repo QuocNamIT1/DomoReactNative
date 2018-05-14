@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Animated, Dimensions, ListView } from 'react-native';
-// import Transition from './Transition';
-// import DetailScreen from './DetailScreen';
+import Transition from './transition';
+import DetailScreen from './detailScreen';
 
 import PropTypes from 'prop-types';
 import PHOTOS from '../../data'
@@ -19,8 +19,10 @@ export default class PhotoGallery extends React.Component {
         isAnimating: false
     };
 
-    _images = {};
 
+
+    _images = {};
+    _data = {};
     _imageOpacitySetters = {};
 
     static childContextTypes = {
@@ -36,7 +38,7 @@ export default class PhotoGallery extends React.Component {
             rowHasChanged: (r1, r2) => r1 !== r2
         });
 
-        this.state = {
+        this.data = {
             dataSource: ds.cloneWithRows(rows)
         };
 
@@ -62,7 +64,7 @@ export default class PhotoGallery extends React.Component {
         this.setState({ photo, isAnimating: true }, () => {
             Animated.timing(this.state.openProgress, {
                 toValue: 1,
-                duration: 300,
+                duration: 3000,
                 useNativeDriver: true
             }).start(() => {
                 this.setState({ isAnimating: false });
@@ -101,8 +103,20 @@ export default class PhotoGallery extends React.Component {
         return (
             <View style={{ flex: 1 }}>
                 <ListView
-                    dataSource={this.state.dataSource}
+                    dataSource={this.data.dataSource}
                     renderRow={this.renderRow.bind(this, this.open)}
+                />
+                {/* <Transition
+                    openProgress={openProgress}
+                    photo={photo}
+                    sourceImageRefs={this._images}
+                    isAnimating={isAnimating}
+                /> */}
+                <DetailScreen
+                    photo={photo}
+                    onClose={this.close}
+                    openProgress={openProgress}
+                    isAnimating={isAnimating}
                 />
             </View>
         );
